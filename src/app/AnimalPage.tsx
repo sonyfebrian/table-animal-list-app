@@ -25,8 +25,8 @@ const AnimalsPage: React.FC = () => {
 
     const renderAnimalRow = (animal: Animal, level: number): JSX.Element => {
         return (
-            <tr key={`${animal.name}-${level}`}>
-                <td style={{ paddingLeft: `${level * 20}px` }}>{animal.name}</td>
+            <tr key={`${animal.name}-${level}`} className="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
+                <td style={{ paddingLeft: `${level * 20}px` }} className='px-6 py-4'>{animal.name}</td>
             </tr>
         );
     };
@@ -44,24 +44,28 @@ const AnimalsPage: React.FC = () => {
 
     return (
         <div>
-            <h1>Animals</h1>
+            <h1 className='sm:text-3xl text-2xl font-medium title-font mb-4 text-center text-gray-900'>Table List Animals</h1>
             {animals.length === 0 ? (
                 <p>Loading...</p>
             ) : (
-                <table>
-                    <thead>
-                        <tr>
-                            <th>Name</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        {animals.map((animal, index) => (
-                            <React.Fragment key={`${animal.name}-${index}`}>
-                                {renderAnimal(animal, 0)}
-                            </React.Fragment>
-                        ))}
-                    </tbody>
-                </table>
+                <>
+
+                    <div className='relative overflow-x-auto shadow-md sm:rounded-lg'> <table className="w-full text-sm text-left text-gray-500 dark:text-gray-400">
+                        <thead className='text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400'>
+                            <tr>
+                                <th scope="col" className='px-6 py-3'>Name</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {animals.map((animal, index) => (
+                                <React.Fragment key={`${animal.name}-${index}`}>
+                                    {renderAnimal(animal, 0)}
+                                </React.Fragment>
+                            ))}
+                        </tbody>
+                    </table></div>
+                </>
+
             )}
         </div>
     );
